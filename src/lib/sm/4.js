@@ -49,7 +49,7 @@ export default {
       return originalData;
     }
     try {
-      const encrypted = SM4(originalData, key, 1, options);
+      const encrypted = SM4(originalData + '', key, 1, options);
       if (options.output === 'array') {
         return encrypted;
       } else {
@@ -57,7 +57,7 @@ export default {
       }
     } catch (error) {
       console.error('🐛: ~ encrypt ~ error:', originalData, error);
-      return '';
+      return originalData;
     }
   },
 
@@ -79,13 +79,20 @@ export default {
 
     try {
       const decrypted = SM4(encryptedData, key, 0, options);
+      if (decrypted === '') {
+        throw new Error('Decryption failed')
+      }
       if (options.output === 'array') {
         return decrypted;
       } else {
         const decryptedStr = decrypted.toString('utf8');
         try {
           // 尝试解析为 JSON 对象
-          return JSON.parse(decryptedStr);
+          if(decryptedStr.includes('}') || decryptedStr.includes(']')){
+            return JSON.parse(decryptedStr);
+          }else{
+            return decryptedStr;
+          }
         } catch (parseError) {
           // 如果解析失败，返回原始字符串
           return decryptedStr;
@@ -93,7 +100,7 @@ export default {
       }
     } catch (error) {
       console.error('🐛: ~ decrypt ~ error:', encryptedData, error);
-      return '';
+      return encryptedData;
     }
   }
 }

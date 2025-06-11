@@ -8,14 +8,18 @@
   <a href="https://www.npmjs.com/package/jxk">
     <img src="https://img.shields.io/npm/v/jxk?color=orange&label=" alt="版本" />
   </a>
+  
   <a href="https://github.com/qmhc/jxk/blob/main/LICENSE">
     <img src="https://img.shields.io/npm/l/jxk" alt="许可证" />
   </a>
 </p>
 
 <h1 >
-  <a href="https://www.jixiaokang.com/jxk/playground">
+  <a href="https://jxk.jixiaokang.com/playground/index.html">
     游乐场🎠演示
+  </a><br/>
+  <a href="https://jxk.jixiaokang.com/">
+  所有函数请访问https://jxk.jixiaokang.com/
   </a>
 </h1>
 
